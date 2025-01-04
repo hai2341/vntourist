@@ -1,0 +1,128 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    text-decoration: none;
+    List-style-type:none;
+}
+html{
+    overflow:hidden;
+}
+body{
+    width:100%;
+    height:100vh;
+    display:flex;
+    align-items: center;
+}
+.video-preview{
+    position: relative;
+    width:100%;
+    height: 40vh;
+    cursor: pointer;
+}
+
+.video-preview::after{
+    content:'';
+    position: absolute;
+    inset:0;
+    background:rgba(0,0,0, 0.2);
+    z-index: 3;
+}
+
+.video-preview ion-icon{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    width: 150px;
+    height:150px;
+    fill:white;
+    pointer-events: none;
+    z-index: 5;
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.video-preview img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 2;
+}
+
+.video-preview video{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+}
+
+.video-preview:hover img{
+    z-index: 1;
+}
+
+.video-preview:hover video{
+    z-index: 2;
+}
+.video-preview:hover ion-icon{
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+@keyframes show {
+    from{
+        clip-path: circle(0.4% at 50% 50%);
+    }
+
+    to{
+        clip-path: circle(100% at 50% 50%);
+    }
+}
+
+.is-animated{
+    animation: show 500ms ease-in-out forwards;
+}
+
+.video-modal{
+    position: absolute;
+    z-index:20;
+    inset:0;
+    background:rgb(255,255,255,0.8);
+    align-items: center;
+    justify-content: center;
+    transition: all 500ms ease;
+}
+.video-modal .close-btn{
+    width: 5rem;
+    height: 5rem;
+    fill:#ffffff;
+    position: absolute;
+    top:30px;
+    right:30px;
+    cursor:pointer;
+}
+
+.video-modal .video{
+    width: 50%;
+    height:50vh;
+}
+
+.video-modal .video iframe{
+    width: 100%;
+    height:100%;
+}
+
+.none{
+    display: none;
+}
+
+.show{
+    display:flex;
+}
+
+.active{
+    opacity:1;
+}
+.inactive{
+    opacity: 0;
+}
